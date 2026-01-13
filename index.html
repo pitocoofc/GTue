@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Nexus - Login</title>
+    <style>
+        body { margin: 0; background: #0a0a0a; color: white; font-family: sans-serif; display: flex; align-items: center; justify-content: center; height: 100vh; }
+        .box { background: #151515; padding: 30px; border-radius: 10px; border: 1px solid #333; width: 300px; text-align: center; }
+        input { width: 100%; padding: 12px; margin: 10px 0; background: #000; border: 1px solid #444; color: white; border-radius: 5px; box-sizing: border-box; }
+        button { width: 100%; padding: 12px; background: #4fc3f7; border: none; font-weight: bold; cursor: pointer; border-radius: 5px; }
+        .error { color: #f44336; font-size: 12px; margin-bottom: 10px; display: none; }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h2 style="color:#4fc3f7">NEXUS LOGIN</h2>
+        <div id="err" class="error"></div>
+        <input type="text" id="nick" placeholder="Nickname">
+        <input type="password" id="pass" placeholder="Senha (min. 5)">
+        <button onclick="logar()">ENTRAR</button>
+    </div>
+
+    <script>
+        function logar() {
+            const nick = document.getElementById('nick').value.trim();
+            const pass = document.getElementById('pass').value;
+            const err = document.getElementById('err');
+
+            if(nick.length < 3 || pass.length < 5) {
+                err.innerText = "Nick ou Senha inválidos!";
+                err.style.display = "block";
+                return;
+            }
+
+            // Salva a sessão localmente
+            localStorage.setItem('nexus_user', nick);
+            localStorage.setItem('nexus_coins', 0);
+            localStorage.setItem('nexus_color', '#4fc3f7'); // Cor padrão
+            
+            window.location.href = 'hub.html';
+        }
+    </script>
+</body>
+</html>
