@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Nexus - Hub</title>
+    <style>
+        body { margin: 0; background: #0f0f0f; color: white; font-family: sans-serif; padding: 20px; }
+        .header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #333; padding-bottom: 15px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 20px; margin-top: 30px; }
+        .card { background: #1e1e1e; border-radius: 10px; padding: 15px; text-align: center; border: 1px solid #333; cursor: pointer; transition: 0.3s; }
+        .card:hover { border-color: #4fc3f7; transform: translateY(-5px); }
+        .card.off { opacity: 0.5; cursor: not-allowed; }
+        .btn-logout { background: #f44336; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div>
+            <small>PLAYER:</small>
+            <h2 id="user-display" style="margin:0; color:#4fc3f7">---</h2>
+        </div>
+        <button class="btn-logout" onclick="logout()">SAIR</button>
+    </div>
+
+    <h3>RECOMENDADOS</h3>
+    <div class="grid">
+        <div class="card" onclick="play('parkour.html')">
+            <div style="font-size:40px">🏃‍♂️</div>
+            <h4>Parkour Pro</h4>
+        </div>
+        <div class="card off" onclick="alert('Servidor em manutenção')">
+            <div style="font-size:40px">⚔️</div>
+            <h4>Arena Combat</h4>
+        </div>
+        <div class="card off">
+            <div style="font-size:40px">📦</div>
+            <h4>Build World</h4>
+        </div>
+    </div>
+
+    <script>
+        const user = localStorage.getItem('nexus_user');
+        if(!user) window.location.href = 'index.html';
+        document.getElementById('user-display').innerText = user.toUpperCase();
+
+        function play(file) { window.location.href = file; }
+        function logout() { localStorage.clear(); window.location.href = 'index.html'; }
+    </script>
+</body>
+</html>
